@@ -10,23 +10,17 @@ def check_word(string: str) -> bool:
 def ask_user() -> str:
     user_input = input("Type a word that needs to be guessed \n"
                        "don't use space, numbers or special characters: \n")
+    while True:
+        # check if the word is actually a word:
+        if not check_word(user_input):  # if its not a word, ask again
+            print("That was not a word, try again")
+            user_input = ask_user()
+        else:  # if it is a word, break the loop
+            break
     return user_input.lower()
 
 
-word = ask_user()
-while True:
-    # check if the word is actually a word:
-    if not check_word(word):  # if its not a word, ask again
-        print("That was not a word, try again")
-        word = ask_user()
-    else:  # if it is a word, break the loop
-        break
-
-# create a dictionary that withholds the status of the letters that have been guessed correctly:
-word_dict = {letter: False for letter in word}
-
-
-def guess() -> None:
+def guess(word: str, word_dict: dict) -> None:
     guess = input("Guess one letter: \n").lower()
     # check if guess was correct:
     if guess in word:
@@ -37,7 +31,7 @@ def guess() -> None:
         print("No, this letter is not in the word")
 
 
-def print_word() -> None:
+def print_word(word_dict: dict) -> None:
     # create string with only the letters that already have been guessed
     underscore_string = ""
     for letter, status in word_dict.items():
@@ -48,12 +42,21 @@ def print_word() -> None:
     print(underscore_string)
 
 
-# while loop to play the game:
-while True:
-    guess()
-    print_word()
+def main():
+    word = ask_user()
+    # create a dictionary that withholds the status of the letters that have been guessed correctly:
+    word_dict = {letter: False for letter in word}
+    # while loop to play the game:
+    while True:
+        guess(word=word,
+              word_dict=word_dict)
+        print_word(word_dict=word_dict)
 
-    # check if the game is over
-    if all(value == True for value in word_dict.values()):
-        print("well done!")
-        break
+        # check if the game is over
+        if all(value == True for value in word_dict.values()):
+            print("well done!")
+            break
+
+
+if __name__ == "__main__":
+    main()
