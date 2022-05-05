@@ -40,7 +40,7 @@ def guess(word_list: List[str], check_list: List[bool]) -> str:
         return "No, this letter is not in the word"
 
 
-def print_word(word_list: List[str], check_list: List[bool]) -> None:
+def print_word(word_list: List[str], check_list: List[bool]) -> str:
     # create string with only the letters that already have been guessed
     underscore_string = ""
     for index, letter in enumerate(word_list):
@@ -48,7 +48,7 @@ def print_word(word_list: List[str], check_list: List[bool]) -> None:
             underscore_string += letter
         else:
             underscore_string += "_"
-    print(underscore_string)
+    return underscore_string
 
 
 def main():
@@ -60,11 +60,14 @@ def main():
     check_list = [False for letter in word]
     # while loop to play the game:
     while True:
-        answer = guess(word_list=word_list,
+        print(
+            guess(word_list=word_list,
                        check_list=check_list)
-        print(answer)
-        print_word(word_list=word_list,
-                   check_list=check_list)
+        )
+        print(
+            print_word(word_list=word_list,
+                       check_list=check_list)
+        )
 
         # check if the game is over
         if all(value == True for value in check_list):
