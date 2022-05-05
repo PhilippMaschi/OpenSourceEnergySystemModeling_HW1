@@ -12,7 +12,6 @@ def ask_user() -> str:
 def check_user_input(user_input: str) -> str:
     count = 0
     while True:
-        count += 1
         # check if the word is actually a word:
         if not user_input.isalpha():  # if its not a word, ask again
             print("That was not a word, try again")
@@ -21,6 +20,7 @@ def check_user_input(user_input: str) -> str:
             if count == 3:
                 print("you are incapable of typing a single word")
                 quit()
+            count += 1
         else:  # if it is a word, break the loop
             break
     return user_input.lower()
