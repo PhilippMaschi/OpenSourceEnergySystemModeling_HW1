@@ -26,18 +26,18 @@ def check_user_input(user_input: str) -> str:
     return user_input.lower()
 
 
-def guess(word_list: List[str], check_list: List[bool]) -> None:
+def guess(word_list: List[str], check_list: List[bool]) -> str:
     guess = input("Guess one letter: \n").lower()
     # check if guess was correct:
     if guess in word_list:
-        print("That is correct, this letter is in the word")
         # update the check_list
         for index, letter in enumerate(word_list):
             if letter == guess:
                 check_list[index] = True
+        return "That is correct, this letter is in the word"
 
     else:
-        print("No, this letter is not in the word")
+        return "No, this letter is not in the word"
 
 
 def print_word(word_list: List[str], check_list: List[bool]) -> None:
@@ -60,9 +60,9 @@ def main():
     check_list = [False for letter in word]
     # while loop to play the game:
     while True:
-        guess(word_list=word_list,
-              check_list=check_list)
-
+        answer = guess(word_list=word_list,
+                       check_list=check_list)
+        print(answer)
         print_word(word_list=word_list,
                    check_list=check_list)
 
