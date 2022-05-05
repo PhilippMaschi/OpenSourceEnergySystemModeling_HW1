@@ -1,14 +1,6 @@
 from typing import List
 
 
-def check_word(string: str) -> bool:
-    # check if numbers, special chars or spaces are in the string
-    if string.isalpha():
-        return True
-    else:
-        return False
-
-
 # user input one word
 def ask_user() -> str:
     user_input = input("Type a word that needs to be guessed \n"
@@ -22,7 +14,7 @@ def check_user_input(user_input: str) -> str:
     while True:
         count += 1
         # check if the word is actually a word:
-        if not check_word(user_input):  # if its not a word, ask again
+        if not user_input.isalpha():  # if its not a word, ask again
             print("That was not a word, try again")
             user_input = ask_user()
             # after 3 attempts end the game:
