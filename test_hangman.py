@@ -15,10 +15,23 @@ def test_check_user_input_false(mock_ask_user):
     assert check_user_input(r"%abc") == "abc".lower()
 
 
-    # check if it does throw error for numbers
-    # assert check_user_input("hi1kasüäö") == False
-    # # check if special signs throw and error
-    # assert check_user_input("kl%") == False
+@patch("Hangman.input", return_value="h")
+def test_guess_true(self):
+    word_list = [letter for letter in "haalloo"]
+    check_list = [False, False, False, True, True, False, False]
+    assert guess(word_list, check_list) == "That is correct, this letter is in the word"
 
+
+@patch("Hangman.input", return_value="x")
+def test_guess_false(self):
+    word_list = [letter for letter in "haalloo"]
+    check_list = [True, False, False, True, True, False, False]
+    assert guess(word_list, check_list) == "No, this letter is not in the word"
+
+
+def test_print_word():
+    word_list = [letter for letter in "haalloo"]
+    check_list = [True, False, False, True, True, False, False]
+    assert print_word(word_list, check_list) == "h__ll__"
 
 
