@@ -26,12 +26,12 @@ def test_guess_true(self):
 def test_guess_false(self):
     word_list = [letter for letter in "haalloo"]
     check_list = [True, False, False, True, True, False, False]
-    assert guess(word_list, check_list) == "No, this letter is not in the word"
+    assert guess(word_list, check_list) == "foo"
 
 
 def test_print_word():
     word_list = [letter for letter in "haalloo"]
     check_list = [True, False, False, True, True, False, False]
-    assert print_word(word_list, check_list) == "h__ll__"
+    assert print_word(word_list, check_list) == "foo"
 
 
